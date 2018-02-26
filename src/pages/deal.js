@@ -148,14 +148,14 @@ const Component = ({ selectedId, deal, children }) => (
       <Back to="/">
         <ChevronLeft />
       </Back>
-      {deal.name} at {deal.place.name}
+      {deal.place.name}
     </Header>
     <Main style={{ top: 0, bottom: 0 }}>
       <Image style={{ backgroundImage: `url(${deal.image})` }} />
 
       <Description>
         <OrderButton to={`/${deal.id}/order`}>
-          Order Now (${deal.price})
+          Order {deal.name} (${deal.price})
         </OrderButton>
         <p>{deal.description}</p>
         <br />

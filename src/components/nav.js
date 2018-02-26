@@ -2,8 +2,7 @@ import styled from 'styled-components'
 import { BASE_COLOR } from '../vars'
 
 export default styled.div`
-  background: #fff;
-  border-top: 1px solid #ccc;
+  background: #191919;
   height: 44px;
   line-height: 44px;
   text-align: center;
