@@ -1,0 +1,21 @@
+{
+  "name": "cs364-mealdeal",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "deploy": "now && now alias && now remove cs364-mealdeal --safe"
+  },
+  "dependencies": {
+    "moment": "^2.20.1",
+    "next": "4.2.3",
+    "react": "16.2.0",
+    "react-dom": "16.2.0",
+    "recompose": "^0.26.0",
+    "styled-components": "^2.4.0"
+  },
+  "now": {
+    "alias": "cs364-mealdeal",
+    "name": "cs364-mealdeal"
+  }
+}
