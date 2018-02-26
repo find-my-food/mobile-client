@@ -1,7 +1,8 @@
-import Link from 'next/link'
-import {compose, withProps} from 'recompose'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { compose, withProps } from 'recompose'
 import styled from 'styled-components'
-import {BASE_COLOR} from '../vars'
+import { BASE_COLOR } from '../vars'
 
 const Container = styled.li`
   display: block;
@@ -9,9 +10,9 @@ const Container = styled.li`
   height: 200px;
   position: relative;
   background-size: 100%;
-  box-shadow: 0px 0px 4px rgba(0,0,0,.3);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
   &:active {
-    transform: scale(.99);
+    transform: scale(0.99);
   }
   section {
     position: absolute;
@@ -22,7 +23,7 @@ const Container = styled.li`
     display: flex;
     align-items: center;
     padding: 0px 20px;
-    background: rgba(0,0,0,.5);
+    background: rgba(0, 0, 0, 0.5);
     color: white;
     .price {
       position: absolute;
@@ -36,12 +37,11 @@ const Container = styled.li`
   }
 `
 
-const enhance = compose(
-)
+const enhance = compose()
 
-const Component = ({id, name, image, price})=>(
-  <Link href={`/?id=${id}`}>
-    <Container style={{backgroundImage: `url(${image})`}}>
+const Component = ({ id, name, image, price }) => (
+  <Link to={`/${id}`}>
+    <Container style={{ backgroundImage: `url(${image})` }}>
       <section>
         {name}
         <div className="price">${price}</div>

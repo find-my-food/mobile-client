@@ -1,21 +1,27 @@
 {
-  "name": "cs364-mealdeal",
-  "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start",
-    "deploy": "now && now alias && now remove cs364-mealdeal --safe"
+  "name": "mobile-client",
+  "homepage": "https://find-my-food.github.io/mobile-client",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "gh-pages": "^1.1.0",
+    "react-scripts": "1.1.1"
   },
   "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
     "moment": "^2.20.1",
-    "next": "4.2.3",
-    "react": "16.2.0",
-    "react-dom": "16.2.0",
     "recompose": "^0.26.0",
     "styled-components": "^2.4.0"
   },
-  "now": {
-    "alias": "cs364-mealdeal",
-    "name": "cs364-mealdeal"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   }
 }

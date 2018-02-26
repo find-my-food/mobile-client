@@ -1,7 +1,8 @@
-import Link from 'next/link'
-import {compose, withProps} from 'recompose'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { compose, withProps } from 'recompose'
 import styled from 'styled-components'
-import {BASE_COLOR} from '../vars'
+import { BASE_COLOR } from '../vars'
 import moment from 'moment'
 
 const Container = styled.div`
@@ -32,7 +33,7 @@ const Image = styled.div`
     display: flex;
     align-items: center;
     padding: 0px 20px;
-    background: rgba(0,0,0,.5);
+    background: rgba(0, 0, 0, 0.5);
     color: white;
     .price {
       position: absolute;
@@ -46,15 +47,13 @@ const Image = styled.div`
   }
 `
 
-const enhance = compose(
+const enhance = compose()
 
-)
+const formatHour = hour => (hour > 12 ? hour - 12 + ' pm' : hour + 'am')
 
-const formatHour = (hour)=>hour > 12 ? hour - 12 + ' pm' : hour + 'am'
-
-const Component = ({id, name, image, price, description, place})=>(
+const Component = ({ id, name, image, price, description, place }) => (
   <Container>
-    <Image style={{backgroundImage: `url(${image})`}}>
+    <Image style={{ backgroundImage: `url(${image})` }}>
       <section>
         {name}
         <div className="price">${price}</div>
@@ -64,7 +63,9 @@ const Component = ({id, name, image, price, description, place})=>(
     <Description>
       <p>{description}</p>
       <strong>Hours</strong>
-      <p>{formatHour(place.hours[0])} - {formatHour(place.hours[1])}</p>
+      <p>
+        {formatHour(place.hours[0])} - {formatHour(place.hours[1])}
+      </p>
     </Description>
   </Container>
 )

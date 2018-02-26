@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {BASE_COLOR} from '../vars'
+import { BASE_COLOR } from '../vars'
 
 export default styled.div`
   background: ${BASE_COLOR};
@@ -12,14 +12,4 @@ export default styled.div`
   left: 0;
   right: 0;
   height: 44px;
-  .back {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    padding: 0px 20px;
-    &:active {
-      background: rgba(0,0,0,.1);
-    }
-  }
 `
