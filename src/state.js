@@ -1,18 +1,19 @@
-let id = 0
+let uniqueId = 123456
 const state = {}
 
 const Entity = ({ collection }) => props => {
-  const newId = id++
+  const id = (++uniqueId).toString(36)
   state[collection] = state[collection] || {}
-  state[collection][newId] = props
-  return newId
+  state[collection][id] = { id, ...props }
+  return id
 }
 
 const Deal = Entity({ collection: 'deals' })
 const Place = Entity({ collection: 'places' })
+const MenuItem = Entity({ collection: 'menuItems' })
 
 const tacoPlaceId = Place({
-  name: 'Taco Bus',
+  name: 'The Taco Bus',
   hours: [9, 17]
 })
 
@@ -24,8 +25,34 @@ Deal({
   placeId: tacoPlaceId
 })
 
+MenuItem({
+  name: 'More Tacos',
+  price: 3,
+  placeId: tacoPlaceId
+})
+MenuItem({
+  name: 'More Tacos',
+  price: 3,
+  placeId: tacoPlaceId
+})
+MenuItem({
+  name: 'More Tacos',
+  price: 3,
+  placeId: tacoPlaceId
+})
+MenuItem({
+  name: 'More Tacos',
+  price: 3,
+  placeId: tacoPlaceId
+})
+MenuItem({
+  name: 'More Tacos',
+  price: 3,
+  placeId: tacoPlaceId
+})
+
 const burgerPlaceId = Place({
-  name: 'Burger Place',
+  name: 'The Burger Place',
   hours: [9, 17]
 })
 
@@ -37,8 +64,34 @@ Deal({
   placeId: burgerPlaceId
 })
 
+MenuItem({
+  name: 'More Burgers',
+  price: 3,
+  placeId: burgerPlaceId
+})
+MenuItem({
+  name: 'More Burgers',
+  price: 3,
+  placeId: burgerPlaceId
+})
+MenuItem({
+  name: 'More Burgers',
+  price: 3,
+  placeId: burgerPlaceId
+})
+MenuItem({
+  name: 'More Burgers',
+  price: 3,
+  placeId: burgerPlaceId
+})
+MenuItem({
+  name: 'More Burgers',
+  price: 3,
+  placeId: burgerPlaceId
+})
+
 const soupPlaceId = Place({
-  name: 'Soup Place',
+  name: 'The Soup Place',
   hours: [9, 17]
 })
 
@@ -50,8 +103,34 @@ Deal({
   placeId: soupPlaceId
 })
 
+MenuItem({
+  name: 'More Soup',
+  price: 3,
+  placeId: soupPlaceId
+})
+MenuItem({
+  name: 'More Soup',
+  price: 3,
+  placeId: soupPlaceId
+})
+MenuItem({
+  name: 'More Soup',
+  price: 3,
+  placeId: soupPlaceId
+})
+MenuItem({
+  name: 'More Soup',
+  price: 3,
+  placeId: soupPlaceId
+})
+MenuItem({
+  name: 'More Soup',
+  price: 3,
+  placeId: soupPlaceId
+})
+
 const pastaPlaceId = Place({
-  name: 'Pasta Place',
+  name: 'The Pasta Place',
   hours: [9, 17]
 })
 
@@ -60,6 +139,32 @@ Deal({
   description: 'There is Pasta for sale here at this place.',
   price: 5,
   image: `https://images.unsplash.com/photo-1453831362806-3d5577f014a4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=9dd8da96be0724ab84e4147d428f6bba&auto=format&fit=crop&w=2238&q=80`,
+  placeId: pastaPlaceId
+})
+
+MenuItem({
+  name: 'More Pasta',
+  price: 3,
+  placeId: pastaPlaceId
+})
+MenuItem({
+  name: 'More Pasta',
+  price: 3,
+  placeId: pastaPlaceId
+})
+MenuItem({
+  name: 'More Pasta',
+  price: 3,
+  placeId: pastaPlaceId
+})
+MenuItem({
+  name: 'More Pasta',
+  price: 3,
+  placeId: pastaPlaceId
+})
+MenuItem({
+  name: 'More Pasta',
+  price: 3,
   placeId: pastaPlaceId
 })
 

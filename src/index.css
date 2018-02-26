@@ -11,14 +11,22 @@ body {
   background: #fafafa;
   margin: 0;
 }
-.phone .statusbar {
-  display: none;
+.phone {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .phone .app {
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   overflow: hidden;
   position: relative;
+}
+.phone .screen {
+  height: 100%;
+  width: 100%;
 }
 @media (min-width: 600px) {
   .phone {
@@ -42,17 +50,8 @@ body {
     position: relative;
     width: 374px;
   }
-  .phone .statusbar {
-    display: block;
-    height: 20px;
-    line-height: 20px;
-    padding: 0px 4px;
-    background: #0966c7;
-    color: white;
-    font-size: 10px;
-  }
   .phone .app {
-    height: calc(100% - 20px);
+    height: 100%;
     width: 100%;
   }
 }

@@ -20,28 +20,18 @@ const enhance = compose(
   }))
 )
 
-const Component = ({ selectedId, deals }) => (
+const Component = ({ selectedId, deals, children }) => (
   <div>
-    <Header>
-      {selectedId !== undefined && (
-        <Link to="/">
-          <div className="back">Back</div>
-        </Link>
-      )}
-      Find My Food
-    </Header>
+    <Header>Find My Food</Header>
     <Main>
-      {selectedId !== undefined ? (
-        <Preview id={selectedId} {...deals[selectedId]} />
-      ) : (
-        <List>
-          {deals.map((props, index) => (
-            <Item key={index} id={index} {...props} />
-          ))}
-        </List>
-      )}
+      <List>
+        {deals.map((props, index) => (
+          <Item key={index} id={index} {...props} />
+        ))}
+      </List>
     </Main>
     <Nav />
+    {children}
   </div>
 )
 

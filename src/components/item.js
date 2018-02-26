@@ -23,7 +23,7 @@ const Container = styled.li`
     display: flex;
     align-items: center;
     padding: 0px 20px;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.8);
     color: white;
     .price {
       position: absolute;
@@ -39,11 +39,11 @@ const Container = styled.li`
 
 const enhance = compose()
 
-const Component = ({ id, name, image, price }) => (
+const Component = ({ id, name, image, price, place }) => (
   <Link to={`/${id}`}>
     <Container style={{ backgroundImage: `url(${image})` }}>
       <section>
-        {name}
+        {name} at {place.name}
         <div className="price">${price}</div>
       </section>
     </Container>

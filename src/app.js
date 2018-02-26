@@ -3,10 +3,14 @@ import { Switch, Route } from 'react-router-dom'
 
 import HomePage from './pages'
 import DealPage from './pages/deal'
+import OrderPage from './pages/order'
 
 export default () => (
-  <Switch>
-    <Route exact path="/" component={HomePage} />
-    <Route path="/:selectedId" component={DealPage} />
-  </Switch>
+  <HomePage>
+    <Route path="/:selectedId">
+      <DealPage>
+        <Route path="/:selectedId/order" component={OrderPage} />
+      </DealPage>
+    </Route>
+  </HomePage>
 )

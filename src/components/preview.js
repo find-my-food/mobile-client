@@ -20,9 +20,9 @@ const Description = styled.div`
 `
 
 const Image = styled.div`
-  background-size: 100%;
+  background-size: cover;
   background-repeat: no-repeat;
-  height: 200px;
+  height: 300px;
   position: relative;
   section {
     position: absolute;
@@ -35,15 +35,35 @@ const Image = styled.div`
     padding: 0px 20px;
     background: rgba(0, 0, 0, 0.5);
     color: white;
-    .price {
-      position: absolute;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      display: flex;
-      align-items: center;
-      padding: 0px 20px;
-    }
+  }
+`
+
+const OrderButton = styled(Link)`
+  display: block;
+  border-radius: 7px;
+  border: 1px solid #ccc;
+  background: white;
+  width: 100%;
+  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 2em;
+  text-align: center;
+  &:link {
+    color: black;
+    text-decoration: none;
+  }
+  &:visited {
+    color: black;
+  }
+  &:hover {
+    background: rgba(0, 0, 0, 0.02);
+  }
+  &:active {
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid #aaa;
+  }
+  &:focus {
+    outline: none;
   }
 `
 
@@ -53,19 +73,18 @@ const formatHour = hour => (hour > 12 ? hour - 12 + ' pm' : hour + 'am')
 
 const Component = ({ id, name, image, price, description, place }) => (
   <Container>
-    <Image style={{ backgroundImage: `url(${image})` }}>
-      <section>
-        {name}
-        <div className="price">${price}</div>
-      </section>
-    </Image>
+    <Image style={{ backgroundImage: `url(${image})` }} />
 
     <Description>
+      <OrderButton to={`/${id}/order`}>Order Now (${price})</OrderButton>
       <p>{description}</p>
+      <br />
       <strong>Hours</strong>
       <p>
         {formatHour(place.hours[0])} - {formatHour(place.hours[1])}
       </p>
+      <strong>Menu</strong>
+      <p>...menu here...</p>
     </Description>
   </Container>
 )
