@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { compose, lifecycle, withProps } from 'recompose'
 import Header from '../components/header'
+import Nav from '../components/nav'
 import Main from '../components/main'
 import List from '../components/list'
 import Item from '../components/item'
@@ -10,10 +11,12 @@ import state from '../state'
 
 const enhance = compose(
   withProps(() => ({
-    deals: state.deals.map(deal => ({
-      ...deal,
-      place: state.places[deal.placeId]
-    }))
+    deals: Object.keys(state.deals)
+      .map(k => state.deals[k])
+      .map(deal => ({
+        ...deal,
+        place: state.places[deal.placeId]
+      }))
   }))
 )
 
@@ -38,14 +41,10 @@ const Component = ({ selectedId, deals }) => (
         </List>
       )}
     </Main>
+    <Nav />
   </div>
 )
 
 const IndexComponent = enhance(Component)
-IndexComponent.getInitialProps = ({ query }) => {
-  return {
-    selectedId: query.id
-  }
-}
 
 export default IndexComponent

@@ -12,4 +12,5 @@ export default styled.div`
   left: 0;
   right: 0;
   height: 44px;
+  box-shadow: 0px -1px 0px 0px #0000006b inset;
 `

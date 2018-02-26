@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Link, withRouter } from 'react-router-dom'
 import { compose, lifecycle, withProps } from 'recompose'
 import Header from '../components/header'
+import Nav from '../components/nav'
 import Main from '../components/main'
 import List from '../components/list'
 import Item from '../components/item'
@@ -28,10 +29,12 @@ const enhance = compose(
   withRouter,
   withProps(({ match }) => match.params),
   withProps(() => ({
-    deals: state.deals.map(deal => ({
-      ...deal,
-      place: state.places[deal.placeId]
-    }))
+    deals: Object.keys(state.deals)
+      .map(k => state.deals[k])
+      .map(deal => ({
+        ...deal,
+        place: state.places[deal.placeId]
+      }))
   }))
 )
 
@@ -44,6 +47,7 @@ const Component = ({ selectedId, deals }) => (
     <Main>
       <Preview id={selectedId} {...deals[selectedId]} />
     </Main>
+    <Nav />
   </div>
 )
 

@@ -1,10 +1,10 @@
 import styled from 'styled-components'
-import {BASE_COLOR} from '../vars'
+import { BASE_COLOR } from '../vars'
 
 export default styled.main`
   position: absolute;
   top: 44px;
-  bottom: 0;
+  bottom: 44px;
   left: 0;
   right: 0;
   overflow: scroll;

@@ -1,1 +1,1 @@
-export const BASE_COLOR = '#094c92'
+export const BASE_COLOR = '#0966c7'
