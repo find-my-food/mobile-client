@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { NavLink as Link } from 'react-router-dom'
+import { ShoppingCart, Square, MapPin, LogIn } from 'react-feather'
+import { BASE_COLOR } from '../vars'
 
 const Container = styled.div`
   background: #fff;
@@ -30,25 +32,35 @@ const NavLink = styled(Link)`
   line-height: 40px;
   padding: 0 20px;
   text-decoration: none;
+  svg {
+    margin-right: 10px;
+    position: relative;
+    top: 1px;
+  }
   &:active {
     background: rgba(0, 0, 0, 0.02);
+  }
+  &.active {
+    border-right: 4px solid ${BASE_COLOR};
+    background: rgba(0, 0, 0, 0.035);
+    color: ${BASE_COLOR};
   }
 `
 
 const Component = ({ style, close }) => (
   <Container style={style}>
     <Hero>Find My Food</Hero>
-    <NavLink to="/cart" onClick={close}>
-      Cart
+    <NavLink activeClassName="active" to="/cart" onClick={close}>
+      <ShoppingCart size={14} /> Cart
     </NavLink>
-    <NavLink to="/" onClick={close}>
-      Billboard
+    <NavLink activeClassName="active" exact to="/" onClick={close}>
+      <Square size={14} /> Billboard
     </NavLink>
-    <NavLink to="/map" onClick={close}>
-      Map
+    <NavLink activeClassName="active" to="/map" onClick={close}>
+      <MapPin size={14} /> Map
     </NavLink>
-    <NavLink to="/login" onClick={close}>
-      Login (temporary link)
+    <NavLink activeClassName="active" to="/login" onClick={close}>
+      <LogIn size={14} />Log in (temporary link)
     </NavLink>
   </Container>
 )
