@@ -8,7 +8,7 @@ const Container = styled.div`
   background: ${BASE_COLOR};
   height: 44px;
   line-height: 44px;
-  font-size: 24px;
+  font-size: 18px;
   text-align: center;
   color: rgba(255, 255, 255, 0.95);
   position: absolute;
