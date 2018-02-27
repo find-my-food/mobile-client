@@ -49,8 +49,8 @@ const VoteControls = styled.div`
 
 const enhance = compose()
 
-const Component = ({ id, name, image, price, description, place, rating }) => (
-  <Link to={`/${id}`}>
+const Component = ({ id, placeId, name, image, price, description, place, rating }) => (
+  <Link to={`/${placeId}`}>
     <Container style={{ backgroundImage: `url(${image})` }}>
       <section>
         <VoteControls>

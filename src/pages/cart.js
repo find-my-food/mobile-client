@@ -4,7 +4,7 @@ import Main from '../components/main'
 
 export default () => (
   <div>
-    <Header nav>Login</Header>
-    <Main>Login Here</Main>
+    <Header nav>Cart</Header>
+    <Main>Your shopping cart!</Main>
   </div>
 )

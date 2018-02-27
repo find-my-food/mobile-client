@@ -68,18 +68,23 @@ const enhance = compose(
   withRouter,
   withProps(({ match }) => match.params),
   withProps(({ deals, selectedId }) => ({
-    deal: {
-      ...state.deals[selectedId],
-      place: state.places[state.deals[selectedId].placeId]
+    place: {
+      ...state.places[selectedId],
+      deal: Object.keys(state.deals)
+        .map(k => state.deals[k])
+        .find(d => d.placeId === selectedId),
+      menu: Object.keys(state.menuItems)
+        .map(key => state.menuItems[key])
+        .filter(x => x.placeId === selectedId)
     }
   }))
 )
 
-const Component = ({ selectedId, deals, deal, children }) => (
+const Component = ({ selectedId, place, children }) => (
   <Overlay onClick={() => window.history.back()}>
     <Container onClick={e => e.stopPropagation()}>
       <h2>
-        {deal.name} at {deal.place.name}
+        {place.deal.name} at {place.name}
       </h2>
       <OrderButton>Confirm Order</OrderButton>
     </Container>

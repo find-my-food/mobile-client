@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components'
 import { Link, withRouter } from 'react-router-dom'
 import { compose, lifecycle, withProps } from 'recompose'
 import { ChevronLeft } from 'react-feather'
+import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import Header from '../components/header'
 import Nav from '../components/nav'
 import Main from '../components/main'
@@ -129,43 +130,45 @@ const enhance = compose(
   withRouter,
   withProps(({ match }) => match.params),
   withProps(({ deals, selectedId }) => ({
-    deal: {
-      ...state.deals[selectedId],
-      place: state.places[state.deals[selectedId].placeId],
+    place: {
+      ...state.places[selectedId],
+      deal: Object.keys(state.deals)
+        .map(k => state.deals[k])
+        .find(d => d.placeId === selectedId),
       menu: Object.keys(state.menuItems)
         .map(key => state.menuItems[key])
-        .filter(x => x.placeId === state.deals[selectedId].placeId)
+        .filter(x => x.placeId === selectedId)
     }
   }))
 )
 
 const formatHour = hour => (hour > 12 ? hour - 12 + ' pm' : hour + 'am')
 
-const Component = ({ selectedId, deal, children }) => (
+const Component = ({ selectedId, place, children }) => (
   <Container>
     <Header style={{ zIndex: 1000, background: 'rgba(0,0,0,.8)' }}>
       <Back to="/">
         <ChevronLeft />
       </Back>
-      {deal.place.name}
+      {place.name}
     </Header>
     <Main style={{ top: 0, bottom: 0 }}>
-      <Image style={{ backgroundImage: `url(${deal.image})` }} />
+      <Image style={{ backgroundImage: `url(${place.deal.image})` }} />
 
       <Description>
-        <OrderButton to={`/${deal.id}/order`}>
-          Order {deal.name} (${deal.price})
+        <OrderButton to={`/${place.id}/order`}>
+          Order {place.deal.name} (${place.deal.price})
         </OrderButton>
-        <p>{deal.description}</p>
+        <p>{place.deal.description}</p>
         <br />
         <strong>Hours</strong>
         <p>
-          {formatHour(deal.place.hours[0])} - {formatHour(deal.place.hours[1])}
+          {formatHour(place.hours[0])} - {formatHour(place.hours[1])}
         </p>
         <strong>Menu</strong>
         <MenuTable>
           <tbody>
-            {deal.menu.map(({ id, name, price }) => (
+            {place.menu.map(({ id, name, price }) => (
               <tr key={id}>
                 <td>{name}</td>
                 <td>${price}</td>
@@ -173,6 +176,22 @@ const Component = ({ selectedId, deal, children }) => (
             ))}
           </tbody>
         </MenuTable>
+        <br />
+        <Map
+          style={{ boxSizing: 'content-box', height: '200px' }}
+          center={place.location}
+          zoom={16}>
+          <TileLayer
+            attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={place.location} zIndexOffset={1000}>
+            <Popup>
+              <span>{place.name}</span>
+            </Popup>
+          </Marker>
+        </Map>
+        <br />
       </Description>
     </Main>
     {children}
