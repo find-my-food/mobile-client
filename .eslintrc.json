@@ -14,9 +14,8 @@
     },
     "sourceType": "module"
   },
-  "plugins": ["react", "flowtype-errors"],
+  "plugins": ["react"],
   "rules": {
-    "flowtype-errors/show-errors": 2,
     "indent": [
       "error",
       2,

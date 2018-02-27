@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { compose, withProps } from 'recompose'
+import { compose, withProps, withHandlers } from 'recompose'
 import styled from 'styled-components'
 import { BASE_COLOR } from '../vars'
 import { ThumbsUp, ThumbsDown } from 'react-feather'
+import actions from '../actions'
 
 const Container = styled.li`
   text-decoration: none;
@@ -59,7 +60,18 @@ const VoteControls = styled.div`
   }
 `
 
-const enhance = compose()
+const enhance = compose(
+  withHandlers({
+    upvote: ({ id }) => e => {
+      e.preventDefault()
+      actions.upvote(id)
+    },
+    downvote: ({ id }) => e => {
+      e.preventDefault()
+      actions.downvote(id)
+    }
+  })
+)
 
 const Component = ({
   id,
@@ -69,16 +81,18 @@ const Component = ({
   price,
   description,
   place,
-  rating
+  votes,
+  upvote,
+  downvote
 }) => (
   <Link to={`/${placeId}`} style={{ textDecoration: 'none' }}>
     <Container>
       <div className="img" style={{ backgroundImage: `url(${image})` }} />
       <section>
         <VoteControls>
-          <ThumbsUp size={14} />
-          {rating}
-          <ThumbsDown size={14} />
+          <ThumbsUp size={14} onClick={upvote} />
+          {votes}
+          <ThumbsDown size={14} onClick={downvote} />
         </VoteControls>
         <h2>{name}</h2>
         {place.name}
