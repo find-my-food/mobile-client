@@ -6,7 +6,6 @@ import Nav from '../components/nav'
 import Main from '../components/main'
 import List from '../components/list'
 import Item from '../components/item'
-import Preview from '../components/preview'
 import state from '../state'
 
 const enhance = compose(
@@ -22,7 +21,7 @@ const enhance = compose(
 
 const Component = ({ selectedId, deals, children }) => (
   <div>
-    <Header>Find My Food</Header>
+    <Header nav>Find My Food</Header>
     <Main>
       <List>
         {deals.map((props, index) => (
@@ -30,7 +29,6 @@ const Component = ({ selectedId, deals, children }) => (
         ))}
       </List>
     </Main>
-    <Nav />
     {children}
   </div>
 )

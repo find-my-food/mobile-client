@@ -8,7 +8,6 @@ import Nav from '../components/nav'
 import Main from '../components/main'
 import List from '../components/list'
 import Item from '../components/item'
-import Preview from '../components/preview'
 import state from '../state'
 
 const ContainerInAnim = keyframes`
