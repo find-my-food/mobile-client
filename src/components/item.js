@@ -6,25 +6,36 @@ import { BASE_COLOR } from '../vars'
 import { ThumbsUp, ThumbsDown } from 'react-feather'
 
 const Container = styled.li`
+  text-decoration: none;
   display: block;
   margin: 0;
-  height: 300px;
   position: relative;
-  background-size: cover;
-  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
   &:active {
     transform: scale(0.99);
   }
+  .img {
+    height: 200px;
+    background-size: cover;
+    margin: 5px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 0;
+  }
   section {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position: relative;
     height: 80px;
     padding: 0px 20px;
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
+    background: white;
+    color: #333;
     padding-top: 10px;
+    margin: 10px;
+    margin-top: 0px;
+    border: 1px solid #ccc;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+    border-top: 0;
+    h2 {
+      margin: 5px 0;
+      font-size: 1.3em;
+    }
     .price {
       position: absolute;
       right: 0;
@@ -49,18 +60,27 @@ const VoteControls = styled.div`
 
 const enhance = compose()
 
-const Component = ({ id, placeId, name, image, price, description, place, rating }) => (
-  <Link to={`/${placeId}`}>
-    <Container style={{ backgroundImage: `url(${image})` }}>
+const Component = ({
+  id,
+  placeId,
+  name,
+  image,
+  price,
+  description,
+  place,
+  rating
+}) => (
+  <Link to={`/${placeId}`} style={{ textDecoration: 'none' }}>
+    <Container>
+      <div className="img" style={{ backgroundImage: `url(${image})` }} />
       <section>
         <VoteControls>
           <ThumbsUp size={14} />
           {rating}
           <ThumbsDown size={14} />
         </VoteControls>
-        {name} at {place.name}
-        <br />
-        {description}
+        <h2>{name}</h2>
+        {place.name}
         <div className="price">${price}</div>
       </section>
     </Container>
