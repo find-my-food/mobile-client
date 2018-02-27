@@ -4,12 +4,12 @@ import { Link, withRouter } from 'react-router-dom'
 import { compose, lifecycle, withProps } from 'recompose'
 import { ChevronLeft } from 'react-feather'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
+import { connect } from 'react-redux'
 import Header from '../components/header'
 import Nav from '../components/nav'
 import Main from '../components/main'
 import List from '../components/list'
 import Item from '../components/item'
-import state from '../state'
 import { HEADER_HEIGHT } from '../vars'
 
 const ContainerInAnim = keyframes`
@@ -131,15 +131,16 @@ const MenuTable = styled.table`
 
 const enhance = compose(
   withRouter,
+  connect(state => ({ data: state.data })),
   withProps(({ match }) => match.params),
-  withProps(({ deals, selectedId }) => ({
+  withProps(({ deals, selectedId, data }) => ({
     place: {
-      ...state.places[selectedId],
-      deal: Object.keys(state.deals)
-        .map(k => state.deals[k])
+      ...data.places[selectedId],
+      deal: Object.keys(data.deals)
+        .map(k => data.deals[k])
         .find(d => d.placeId === selectedId),
-      menu: Object.keys(state.menuItems)
-        .map(key => state.menuItems[key])
+      menu: Object.keys(data.menuItems)
+        .map(key => data.menuItems[key])
         .filter(x => x.placeId === selectedId)
     }
   }))

@@ -6,15 +6,16 @@ import Nav from '../components/nav'
 import Main from '../components/main'
 import List from '../components/list'
 import Item from '../components/item'
-import state from '../state'
+import { connect } from 'react-redux'
 
 const enhance = compose(
-  withProps(() => ({
-    deals: Object.keys(state.deals)
-      .map(k => state.deals[k])
+  connect(state => ({ data: state.data })),
+  withProps(({data}) => ({
+    deals: Object.keys(data.deals)
+      .map(k => data.deals[k])
       .map(deal => ({
         ...deal,
-        place: state.places[deal.placeId]
+        place: data.places[deal.placeId]
       }))
   }))
 )

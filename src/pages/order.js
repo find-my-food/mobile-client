@@ -8,7 +8,7 @@ import Nav from '../components/nav'
 import Main from '../components/main'
 import List from '../components/list'
 import Item from '../components/item'
-import state from '../state'
+import { connect } from 'react-redux'
 
 const Overlay = styled.div`
   position: absolute;
@@ -67,14 +67,15 @@ const OrderButton = styled.button`
 const enhance = compose(
   withRouter,
   withProps(({ match }) => match.params),
-  withProps(({ deals, selectedId }) => ({
+  connect(state => ({ data: state.data })),
+  withProps(({ deals, selectedId, data }) => ({
     place: {
-      ...state.places[selectedId],
-      deal: Object.keys(state.deals)
-        .map(k => state.deals[k])
+      ...data.places[selectedId],
+      deal: Object.keys(data.deals)
+        .map(k => data.deals[k])
         .find(d => d.placeId === selectedId),
-      menu: Object.keys(state.menuItems)
-        .map(key => state.menuItems[key])
+      menu: Object.keys(data.menuItems)
+        .map(key => data.menuItems[key])
         .filter(x => x.placeId === selectedId)
     }
   }))

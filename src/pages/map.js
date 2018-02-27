@@ -2,11 +2,19 @@ import React from 'react'
 import Header from '../components/header'
 import Main from '../components/main'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
-import state from '../state'
+import { compose, withProps } from 'recompose'
+import { connect } from 'react-redux'
 
 const position = [43.816208, -111.782233]
 
-export default () => (
+const enhance = compose(
+  connect(state => ({ data: state.data })),
+  withProps(({ data }) => ({
+    places: data.places
+  }))
+)
+
+const Component = ({ places }) => (
   <div>
     <Header nav>Map</Header>
     <Main>
@@ -18,8 +26,8 @@ export default () => (
           attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {Object.keys(state.places)
-          .map(k => state.places[k])
+        {Object.keys(places)
+          .map(k => places[k])
           .map(({ location, name }) => (
             <Marker position={location} zIndexOffset={1000}>
               <Popup>
@@ -31,3 +39,5 @@ export default () => (
     </Main>
   </div>
 )
+
+export default enhance(Component)
