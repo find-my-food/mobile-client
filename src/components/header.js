@@ -12,6 +12,7 @@ const Container = styled.div`
   font-size: 18px;
   text-align: center;
   color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0px 0.5px 0px rgba(0, 0, 0, 0.3);
   position: absolute;
   top: 0;
   left: 0;

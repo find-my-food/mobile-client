@@ -34,7 +34,8 @@ const Container = styled.li`
     border-top: 0;
     h2 {
       margin: 5px 0;
-      font-size: 1.3em;
+      font-size: 1.2em;
+      font-weight: normal;
     }
     .price {
       position: absolute;
