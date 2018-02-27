@@ -28,8 +28,8 @@ const Component = ({ places }) => (
         />
         {Object.keys(places)
           .map(k => places[k])
-          .map(({ location, name }) => (
-            <Marker position={location} zIndexOffset={1000}>
+          .map(({ id, location, name }) => (
+            <Marker key={id} position={location} zIndexOffset={1000}>
               <Popup>
                 <span>{name}</span>
               </Popup>

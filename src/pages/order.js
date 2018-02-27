@@ -1,13 +1,7 @@
 import React from 'react'
-import styled, { keyframes } from 'styled-components'
-import { Link, withRouter } from 'react-router-dom'
-import { compose, lifecycle, withProps } from 'recompose'
-import { ChevronLeft } from 'react-feather'
-import Header from '../components/header'
-import Nav from '../components/nav'
-import Main from '../components/main'
-import List from '../components/list'
-import Item from '../components/item'
+import styled from 'styled-components'
+import { withRouter } from 'react-router-dom'
+import { compose, withProps } from 'recompose'
 import { connect } from 'react-redux'
 
 const Overlay = styled.div`
@@ -68,7 +62,7 @@ const enhance = compose(
   withRouter,
   withProps(({ match }) => match.params),
   connect(state => ({ data: state.data })),
-  withProps(({ deals, selectedId, data }) => ({
+  withProps(({ selectedId, data }) => ({
     place: {
       ...data.places[selectedId],
       deal: Object.keys(data.deals)
@@ -81,7 +75,7 @@ const enhance = compose(
   }))
 )
 
-const Component = ({ selectedId, place, children }) => (
+const Component = ({ place }) => (
   <Overlay onClick={() => window.history.back()}>
     <Container onClick={e => e.stopPropagation()}>
       <h2>

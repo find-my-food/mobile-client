@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { BASE_COLOR, HEADER_HEIGHT } from '../vars'
+import { HEADER_HEIGHT } from '../vars'
 
 export default styled.main`
   position: absolute;

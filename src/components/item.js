@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { compose, withProps, withHandlers } from 'recompose'
+import { compose, withHandlers } from 'recompose'
 import styled from 'styled-components'
-import { BASE_COLOR } from '../vars'
 import { ThumbsUp, ThumbsDown } from 'react-feather'
 import actions from '../actions'
 
@@ -74,12 +73,10 @@ const enhance = compose(
 )
 
 const Component = ({
-  id,
   placeId,
   name,
   image,
   price,
-  description,
   place,
   votes,
   upvote,

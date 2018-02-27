@@ -1,8 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { compose, lifecycle, withProps } from 'recompose'
+import { compose, withProps } from 'recompose'
 import Header from '../components/header'
-import Nav from '../components/nav'
 import Main from '../components/main'
 import List from '../components/list'
 import Item from '../components/item'
@@ -10,7 +8,7 @@ import { connect } from 'react-redux'
 
 const enhance = compose(
   connect(state => ({ data: state.data })),
-  withProps(({data}) => ({
+  withProps(({ data }) => ({
     deals: Object.keys(data.deals)
       .map(k => data.deals[k])
       .map(deal => ({
@@ -20,7 +18,7 @@ const enhance = compose(
   }))
 )
 
-const Component = ({ selectedId, deals, children }) => (
+const Component = ({ deals, children }) => (
   <div>
     <Header nav>Find My Food</Header>
     <Main>

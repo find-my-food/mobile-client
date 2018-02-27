@@ -1,15 +1,12 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
 import { Link, withRouter } from 'react-router-dom'
-import { compose, lifecycle, withProps } from 'recompose'
+import { compose, withProps } from 'recompose'
 import { ChevronLeft } from 'react-feather'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import { connect } from 'react-redux'
 import Header from '../components/header'
-import Nav from '../components/nav'
 import Main from '../components/main'
-import List from '../components/list'
-import Item from '../components/item'
 import { HEADER_HEIGHT } from '../vars'
 
 const ContainerInAnim = keyframes`
@@ -133,7 +130,7 @@ const enhance = compose(
   withRouter,
   connect(state => ({ data: state.data })),
   withProps(({ match }) => match.params),
-  withProps(({ deals, selectedId, data }) => ({
+  withProps(({ selectedId, data }) => ({
     place: {
       ...data.places[selectedId],
       deal: Object.keys(data.deals)
@@ -148,7 +145,7 @@ const enhance = compose(
 
 const formatHour = hour => (hour > 12 ? hour - 12 + ' pm' : hour + 'am')
 
-const Component = ({ selectedId, place, children }) => (
+const Component = ({ place, children }) => (
   <Container>
     <Header style={{ zIndex: 1000, background: 'rgba(0,0,0,.8)' }}>
       <Back to="/">
