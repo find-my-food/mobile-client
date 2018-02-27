@@ -11,7 +11,7 @@ export default styled.div`
   top: 0;
   left: 0;
   right: 0;
-  padding-top: 22px;
+  padding-top: 5px;
   box-shadow: 0px -1px 0px 0px #0000006b inset;
   backdrop-filter: blur(6px);
 `

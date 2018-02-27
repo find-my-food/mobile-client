@@ -22,7 +22,7 @@ const enhance = compose(
 
 const Component = ({ selectedId, deals, children }) => (
   <div>
-    <Header>Find My Food</Header>
+    <Header><h2>Find My Food</h2></Header>
     <Main>
       <List>
         {deals.map((props, index) => (
