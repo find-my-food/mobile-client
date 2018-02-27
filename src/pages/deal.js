@@ -10,6 +10,7 @@ import Main from '../components/main'
 import List from '../components/list'
 import Item from '../components/item'
 import state from '../state'
+import { HEADER_HEIGHT } from '../vars'
 
 const ContainerInAnim = keyframes`
   from {
@@ -32,15 +33,17 @@ const Container = styled.div`
 `
 
 const Back = styled(Link)`
+  background: transparent;
+  border: 0px;
   display: block;
   color: white;
   position: absolute;
   left: 0;
   bottom: 0;
-  height: 44px;
-  padding: 0px 20px;
+  height: ${HEADER_HEIGHT};
+  padding: 0px 30px;
   z-index: 1000;
-  line-height: 44px;
+  line-height: ${HEADER_HEIGHT};
   &:link {
     text-decoration: none;
   }

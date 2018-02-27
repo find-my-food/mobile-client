@@ -2,13 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import { Menu as MenuIcon } from 'react-feather'
 import Nav from './nav'
-import { BASE_COLOR } from '../vars'
+import { BASE_COLOR, HEADER_HEIGHT } from '../vars'
 import { compose, withStateHandlers } from 'recompose'
 
 const Container = styled.div`
   background: ${BASE_COLOR};
-  height: 44px;
-  line-height: 44px;
+  height: ${HEADER_HEIGHT};
+  line-height: ${HEADER_HEIGHT};
   font-size: 18px;
   text-align: center;
   color: rgba(255, 255, 255, 0.95);
@@ -29,10 +29,10 @@ const Menu = styled.button`
   position: absolute;
   left: 0;
   bottom: 0;
-  height: 44px;
-  padding: 0px 20px;
+  height: ${HEADER_HEIGHT};
+  padding: 0px 30px;
   z-index: 1000;
-  line-height: 44px;
+  line-height: ${HEADER_HEIGHT};
   &:link {
     text-decoration: none;
   }
