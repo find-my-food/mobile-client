@@ -3,7 +3,7 @@ import { BASE_COLOR } from '../vars'
 
 export default styled.main`
   position: absolute;
-  top: 66px;
+  top: 44px;
   bottom: 44px;
   left: 0;
   right: 0;
