@@ -10,7 +10,7 @@ export default () => (
     <Header nav>Login</Header>
     <Main>
       <img src={GoogleLogin}
-        style={{width: '100%'}}>
+        style={{width: '100%', paddingTop: '50%'}}>
       </img>
       <img src={FacebookLogin}
         style={{width: '100%'}}>
