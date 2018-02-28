@@ -10,15 +10,15 @@ const Container = styled.li`
   display: block;
   margin: 0;
   position: relative;
-  &:active {
-    transform: scale(0.99);
-  }
   .img {
     height: 200px;
     background-size: cover;
     margin: 5px;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
     margin-bottom: 0;
+    &:active {
+      transform: scale(0.99);
+    }
   }
   section {
     position: relative;
@@ -82,21 +82,21 @@ const Component = ({
   upvote,
   downvote
 }) => (
-  <Link to={`/${placeId}`} style={{ textDecoration: 'none' }}>
-    <Container>
+  <Container>
+    <Link to={`/${placeId}`} style={{ textDecoration: 'none' }}>
       <div className="img" style={{ backgroundImage: `url(${image})` }} />
-      <section>
-        <VoteControls>
-          <ThumbsUp size={14} onClick={upvote} />
-          {votes}
-          <ThumbsDown size={14} onClick={downvote} />
-        </VoteControls>
-        <h2>{name}</h2>
-        {place.name}
-        <div className="price">${price}</div>
-      </section>
-    </Container>
-  </Link>
+    </Link>
+    <section>
+      <VoteControls>
+        <ThumbsUp size={14} onClick={upvote} />
+        {votes}
+        {votes > 0 && <ThumbsDown size={14} onClick={downvote} />}
+      </VoteControls>
+      <h2>{name}</h2>
+      {place.name}
+      <div className="price">${price}</div>
+    </section>
+  </Container>
 )
 
 export default enhance(Component)

@@ -17,7 +17,7 @@ export const DOWNVOTE = (state, { id }) => ({
     ...state.deals,
     [id]: {
       ...state.deals[id],
-      votes: state.deals[id].votes - 1
+      votes: Math.max(0, state.deals[id].votes - 1)
     }
   }
 })

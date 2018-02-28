@@ -7,7 +7,8 @@ export default styled.main`
   left: 0;
   right: 0;
   bottom: 0;
-  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   background: #fafafa;
 `
