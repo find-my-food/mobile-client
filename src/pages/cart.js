@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import Header from '../components/header'
 import Main from '../components/main'
 import { connect } from 'react-redux'
@@ -31,7 +32,7 @@ const Table = styled.table`
   }
 `
 
-const ConfirmButton = styled.button`
+const ConfirmButton = styled(Link)`
   display: block;
   border-radius: 7px;
   border: 1px solid #ccc;
@@ -78,7 +79,7 @@ const enhance = compose(
   }))
 )
 
-const Component = ({ items, total }) => (
+const Component = ({ items, total, children }) => (
   <div>
     <Header nav>Cart</Header>
     <Main>
@@ -117,12 +118,13 @@ const Component = ({ items, total }) => (
               </tr>
             </tbody>
           </Table>
-          <ConfirmButton>Confirm</ConfirmButton>
+          <ConfirmButton to={'/cart/order'}>Confirm</ConfirmButton>
         </React.Fragment>
       ) : (
         <EmptyState>Your cart is empty</EmptyState>
       )}
     </Main>
+    {children}
   </div>
 )
 

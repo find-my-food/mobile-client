@@ -1,13 +1,14 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
 import { Link, withRouter } from 'react-router-dom'
-import { compose, withProps } from 'recompose'
+import { compose, withProps, withHandlers } from 'recompose'
 import { ChevronLeft } from 'react-feather'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import { connect } from 'react-redux'
 import Header from '../components/header'
 import Main from '../components/main'
 import { HEADER_HEIGHT } from '../vars'
+import actions from '../actions'
 
 const ContainerInAnim = keyframes`
   from {
@@ -77,7 +78,7 @@ const Image = styled.div`
   }
 `
 
-const OrderButton = styled(Link)`
+const OrderButton = styled.button`
   display: block;
   border-radius: 7px;
   border: 1px solid #ccc;
@@ -141,12 +142,18 @@ const enhance = compose(
         .map(key => data.menuItems[key])
         .filter(x => x.placeId === selectedId)
     }
-  }))
+  })),
+  withHandlers({
+    order: ({ history }) => id => () => {
+      history.push('/cart')
+      actions.addToCart(id)
+    }
+  })
 )
 
 const formatHour = hour => (hour > 12 ? hour - 12 + ' pm' : hour + 'am')
 
-const Component = ({ place, children }) => (
+const Component = ({ place, children, order }) => (
   <Container>
     <Header style={{ zIndex: 1000, background: 'rgba(0,0,0,.8)' }}>
       <Back to="/">
@@ -158,7 +165,7 @@ const Component = ({ place, children }) => (
       <Image style={{ backgroundImage: `url(${place.deal.image})` }} />
 
       <Description>
-        <OrderButton to={`/${place.id}/order`}>
+        <OrderButton onClick={order(place.deal.id)}>
           Order {place.deal.name} (${place.deal.price})
         </OrderButton>
         <p>{place.deal.description}</p>

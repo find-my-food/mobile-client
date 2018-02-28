@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { withRouter } from 'react-router-dom'
 import { compose, withProps, withHandlers } from 'recompose'
 import { connect } from 'react-redux'
-import actions from '../actions'
 
 const Overlay = styled.div`
   position: absolute;
@@ -61,33 +60,28 @@ const OrderButton = styled.button`
 const enhance = compose(
   withRouter,
   withProps(({ match }) => match.params),
-  connect(state => ({ data: state.data })),
-  withProps(({ selectedId, data }) => ({
-    place: {
-      ...data.places[selectedId],
-      deal: Object.keys(data.deals)
-        .map(k => data.deals[k])
-        .find(d => d.placeId === selectedId),
-      menu: Object.keys(data.menuItems)
-        .map(key => data.menuItems[key])
-        .filter(x => x.placeId === selectedId)
-    }
+  connect(state => ({ cart: state.cart, deals: state.data.deals })),
+  withProps(({ cart, deals }) => ({
+    items: Object.keys(cart).map(id => ({
+      ...deals[id],
+      count: cart[id].count
+    }))
+  })),
+  withProps(({ items }) => ({
+    total: items.reduce((sum, item) => item.count * item.price + sum, 0)
   })),
   withHandlers({
-    order: ({ place, history }) => () => {
+    order: ({ history }) => () => {
       history.push('/cart')
-      actions.addToCart(place.deal.id)
     }
   })
 )
 
-const Component = ({ place, order }) => (
+const Component = ({ order, total }) => (
   <Overlay onClick={() => window.history.back()}>
     <Container onClick={e => e.stopPropagation()}>
-      <h2>
-        {place.deal.name} at {place.name}
-      </h2>
-      <OrderButton onClick={order}>Add to Cart</OrderButton>
+      <h2>Total: ${total}</h2>
+      <OrderButton onClick={order}>Pay with Stripe</OrderButton>
     </Container>
   </Overlay>
 )

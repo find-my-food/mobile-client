@@ -18,7 +18,9 @@ export default () => (
       <MapPage />
     </Route>
     <Route path="/cart">
-      <CartPage />
+      <CartPage>
+        <Route path="/:selectedId/order" component={OrderPage} />
+      </CartPage>
     </Route>
     <Route path="/rewards">
       <RewardsPage />
@@ -26,9 +28,7 @@ export default () => (
     <Route path="/">
       <HomePage>
         <Route path="/:selectedId">
-          <DealPage>
-            <Route path="/:selectedId/order" component={OrderPage} />
-          </DealPage>
+          <DealPage />
         </Route>
       </HomePage>
     </Route>
