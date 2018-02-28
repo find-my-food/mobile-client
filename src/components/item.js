@@ -14,8 +14,11 @@ const Container = styled.li`
     height: 200px;
     background-size: cover;
     margin: 5px;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.6), 0px 0px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 0;
+    position: relative;
+    z-index: 1;
+    border-radius: 3px;
     &:active {
       transform: scale(0.99);
     }
@@ -30,7 +33,7 @@ const Container = styled.li`
     margin: 10px;
     margin-top: 0px;
     border: 1px solid #ccc;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
     border-top: 0;
     h2 {
       margin: 5px 0;
