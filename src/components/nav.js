@@ -50,8 +50,8 @@ const NavLink = styled(Link)`
 const Component = ({ style, close }) => (
   <Container style={style}>
     <Hero>Find My Food</Hero>
-    <NavLink activeClassName="active" to="/cart" onClick={close}>
-      <ShoppingCart size={14} /> Cart
+    <NavLink activeClassName="active" to="/login" onClick={close}>
+      <LogIn size={14} />Log in (temporary link)
     </NavLink>
     <NavLink activeClassName="active" exact to="/" onClick={close}>
       <Square size={14} /> Billboard
@@ -59,8 +59,8 @@ const Component = ({ style, close }) => (
     <NavLink activeClassName="active" to="/map" onClick={close}>
       <MapPin size={14} /> Map
     </NavLink>
-    <NavLink activeClassName="active" to="/login" onClick={close}>
-      <LogIn size={14} />Log in (temporary link)
+    <NavLink activeClassName="active" to="/cart" onClick={close}>
+      <ShoppingCart size={14} /> Cart
     </NavLink>
     <NavLink activeClassName="active" to="/rewards" onClick={close}>
       <Box size={14} />Rewards
