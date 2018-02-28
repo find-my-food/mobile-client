@@ -1,9 +1,11 @@
 import { bindActionCreators } from 'redux'
 
 import * as data from './data'
+import * as cart from './cart'
 
 let actions = {
-  ...data
+  ...data,
+  ...cart
 }
 
 export default actions

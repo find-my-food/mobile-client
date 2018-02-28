@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import { withRouter } from 'react-router-dom'
-import { compose, withProps } from 'recompose'
+import { compose, withProps, withHandlers } from 'recompose'
 import { connect } from 'react-redux'
+import actions from '../actions'
 
 const Overlay = styled.div`
   position: absolute;
@@ -18,7 +19,6 @@ const Container = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  height: 50%;
   background: white;
   border: 1px solid #ccc;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
@@ -72,16 +72,22 @@ const enhance = compose(
         .map(key => data.menuItems[key])
         .filter(x => x.placeId === selectedId)
     }
-  }))
+  })),
+  withHandlers({
+    order: ({ place, history }) => () => {
+      history.push('/cart')
+      actions.addToCart(place.deal.id)
+    }
+  })
 )
 
-const Component = ({ place }) => (
+const Component = ({ place, order }) => (
   <Overlay onClick={() => window.history.back()}>
     <Container onClick={e => e.stopPropagation()}>
       <h2>
         {place.deal.name} at {place.name}
       </h2>
-      <OrderButton>Confirm Order</OrderButton>
+      <OrderButton onClick={order}>Add to Cart</OrderButton>
     </Container>
   </Overlay>
 )

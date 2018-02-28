@@ -1,11 +1,14 @@
 let uniqueId = 123456
 const state = {}
 
-const Entity = ({ collection }) => props => {
-  const id = (++uniqueId).toString(36)
-  state[collection] = state[collection] || {}
-  state[collection][id] = { id, ...props }
-  return id
+const Entity = ({ collection }) => {
+  state[collection] = {}
+  
+  return props => {
+    const id = (++uniqueId).toString(36)
+    state[collection][id] = { id, ...props }
+    return id
+  }
 }
 
 const Deal = Entity({ collection: 'deals' })

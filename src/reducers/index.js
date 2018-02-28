@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux'
 import * as data from './data'
+import * as cart from './cart'
 
-const reducers = { data }
+const reducers = { data, cart }
 
 const transformed = Object.keys(reducers)
   .map(reducerKey => ({
