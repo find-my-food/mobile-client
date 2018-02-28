@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { NavLink as Link } from 'react-router-dom'
-import { ShoppingCart, Square, MapPin, LogIn } from 'react-feather'
+import { ShoppingCart, Square, MapPin, LogIn, Box } from 'react-feather'
 import { BASE_COLOR } from '../vars'
 
 const Container = styled.div`
@@ -61,6 +61,9 @@ const Component = ({ style, close }) => (
     </NavLink>
     <NavLink activeClassName="active" to="/login" onClick={close}>
       <LogIn size={14} />Log in (temporary link)
+    </NavLink>
+    <NavLink activeClassName="active" to="/rewards" onClick={close}>
+      <Box size={14} />Rewards
     </NavLink>
   </Container>
 )

@@ -7,6 +7,7 @@ import CartPage from './pages/cart'
 import MapPage from './pages/map'
 import DealPage from './pages/deal'
 import OrderPage from './pages/order'
+import RewardsPage from './pages/rewards'
 
 export default () => (
   <Switch>
@@ -18,6 +19,9 @@ export default () => (
     </Route>
     <Route path="/cart">
       <CartPage />
+    </Route>
+    <Route path="/rewards">
+      <RewardsPage />
     </Route>
     <Route path="/">
       <HomePage>
