@@ -85,17 +85,17 @@ const Component = ({
   <Container>
     <Link to={`/${placeId}`} style={{ textDecoration: 'none' }}>
       <div className="img" style={{ backgroundImage: `url(${image})` }} />
+      <section>
+        <VoteControls>
+          <ThumbsUp size={14} onClick={upvote} />
+          {votes}
+          {votes > 0 && <ThumbsDown size={14} onClick={downvote} />}
+        </VoteControls>
+        <h2>{name}</h2>
+        {place.name}
+        <div className="price">${price}</div>
+      </section>
     </Link>
-    <section>
-      <VoteControls>
-        <ThumbsUp size={14} onClick={upvote} />
-        {votes}
-        {votes > 0 && <ThumbsDown size={14} onClick={downvote} />}
-      </VoteControls>
-      <h2>{name}</h2>
-      {place.name}
-      <div className="price">${price}</div>
-    </section>
   </Container>
 )
 
