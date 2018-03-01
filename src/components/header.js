@@ -1,6 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Menu as MenuIcon, ShoppingCart as ShoppingCartIcon } from 'react-feather'
+import {
+  Menu as MenuIcon,
+  ShoppingCart as ShoppingCartIcon
+} from 'react-feather'
 import { Link } from 'react-router-dom'
 import Nav from './nav'
 import { BASE_COLOR, HEADER_HEIGHT } from '../vars'
@@ -52,32 +55,32 @@ const Menu = styled.button`
   }
 `
 const ShoppingCart = styled(Link)`
-background: transparent;
-border: 0px;
-display: block;
-color: white;
-position: absolute;
-right: 0;
-bottom: 0;
-height: ${HEADER_HEIGHT};
-padding: 0px 30px;
-z-index: 1000;
-line-height: ${HEADER_HEIGHT};
-&:link {
-  text-decoration: none;
-}
-&:active {
-  background: rgba(0, 0, 0, 0.1);
-}
-&:focus {
-  outline: none;
-}
-svg {
+  background: transparent;
+  border: 0px;
+  display: block;
+  color: white;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+  right: 0;
+  bottom: 0;
+  height: ${HEADER_HEIGHT};
+  padding: 0px 30px;
+  z-index: 1000;
+  line-height: ${HEADER_HEIGHT};
+  &:link {
+    text-decoration: none;
+  }
+  &:active {
+    background: rgba(0, 0, 0, 0.1);
+  }
+  &:focus {
+    outline: none;
+  }
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 `
 
 const Overlay = styled.div`
