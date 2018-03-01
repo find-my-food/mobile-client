@@ -6,6 +6,7 @@ import Main from '../components/main'
 import { connect } from 'react-redux'
 import { compose, withProps } from 'recompose'
 import actions from '../actions'
+import Hungry from '../assets/images/hungry.png'
 
 const Table = styled.table`
   width: calc(100% - 20px);
@@ -121,7 +122,7 @@ const Component = ({ items, total, children }) => (
           <ConfirmButton to={'/cart/order'}>Confirm</ConfirmButton>
         </React.Fragment>
       ) : (
-        <EmptyState>Your cart is empty</EmptyState>
+        <EmptyState>Your cart is empty <img alt="" src={Hungry} style={{ width: '100%' }} /></EmptyState>
       )}
     </Main>
     {children}

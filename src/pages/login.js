@@ -9,8 +9,7 @@ export default () => (
   <div>
     <Header nav>Login</Header>
     <Main>
-      <img alt='logo' src={Logo} style={{ width: '100%', paddingTop: '25%' }}
-      />
+      <img alt='logo' src={Logo} style={{ width: '100%', paddingTop: '25%' }} />
       <img
         alt=""
         src={GoogleLogin}
