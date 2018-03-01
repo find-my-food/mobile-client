@@ -84,7 +84,6 @@ const OrderButton = styled.button`
   border: 1px solid #ccc;
   background: white;
   width: 100%;
-  margin-bottom: 20px;
   font-size: 16px;
   line-height: 2em;
   text-align: center;
@@ -114,10 +113,16 @@ const MenuTable = styled.table`
   border-spacing: 0;
   border: 1px solid #ccc;
   background: white;
-  margin-top: 10px;
+  margin: 0;
+  thead {
+    background: rgba(0, 0, 0, 0.01);
+    td {
+      border-bottom: 1px solid #ccc;
+    }
+  }
   td {
     padding: 10px;
-    &:first-child {
+    &:not(:last-child) {
       border-right: 1px solid #ccc;
     }
   }
@@ -165,9 +170,10 @@ const Component = ({ place, children, order }) => (
       <Image style={{ backgroundImage: `url(${place.deal.image})` }} />
 
       <Description>
-        <OrderButton onClick={order(place.deal.id)}>
+        <OrderButton onClick={order(place.deal.menuItemId)}>
           Order {place.deal.name} (${place.deal.price})
         </OrderButton>
+        <br/>
         <p>{place.deal.description}</p>
         <br />
         <strong>Hours</strong>
@@ -181,6 +187,9 @@ const Component = ({ place, children, order }) => (
               <tr key={id}>
                 <td>{name}</td>
                 <td>${price}</td>
+                <td>
+                  <OrderButton onClick={order(id)}>Order</OrderButton>
+                </td>
               </tr>
             ))}
           </tbody>

@@ -60,11 +60,24 @@ const OrderButton = styled.button`
 const enhance = compose(
   withRouter,
   withProps(({ match }) => match.params),
-  connect(state => ({ cart: state.cart, deals: state.data.deals })),
-  withProps(({ cart, deals }) => ({
+  connect(state => ({
+    cart: state.cart,
+    menuItems: state.data.menuItems,
+    deals: state.data.deals
+  })),
+  withProps(({ cart, deals, menuItems }) => ({
     items: Object.keys(cart).map(id => ({
-      ...deals[id],
+      ...menuItems[id],
+      deal: Object.keys(deals)
+        .map(k => deals[k])
+        .find(d => d.menuItemId === id),
       count: cart[id].count
+    }))
+  })),
+  withProps(({ items }) => ({
+    items: items.map(item => ({
+      ...item,
+      price: item.deal ? item.deal.price : item.price
     }))
   })),
   withProps(({ items }) => ({

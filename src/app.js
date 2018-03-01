@@ -5,7 +5,7 @@ import HomePage from './pages'
 import LoginPage from './pages/login'
 import CartPage from './pages/cart'
 import MapPage from './pages/map'
-import DealPage from './pages/deal'
+import ProfilePage from './pages/profile'
 import OrderPage from './pages/order'
 import RewardsPage from './pages/rewards'
 
@@ -28,7 +28,7 @@ export default () => (
     <Route path="/">
       <HomePage>
         <Route path="/:selectedId">
-          <DealPage />
+          <ProfilePage />
         </Route>
       </HomePage>
     </Route>
