@@ -13,3 +13,4 @@ export default actions
 export function bind(store) {
   Object.assign(actions, bindActionCreators(actions, store.dispatch))
 }
+

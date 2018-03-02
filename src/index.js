@@ -17,3 +17,11 @@ ReactDOM.render(
 )
 
 registerServiceWorker()
+
+// Make the phone always fit on the screen
+const padding = 25
+const phone = document.querySelector('.phone')
+document.body.style.setProperty(
+  '--scale',
+  Math.min(1, (window.innerHeight - padding * 2) / phone.clientHeight)
+)

@@ -1,3 +1,6 @@
+:root {
+  --scale: 1;
+}
 html {
   box-sizing: border-box;
 }
@@ -28,6 +31,9 @@ body {
   height: 100%;
   width: 100%;
 }
+.phone ::-webkit-scrollbar {
+  display: none;
+}
 @media (min-width: 600px) {
   .phone {
     background: #fff;
@@ -40,7 +46,7 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(var(--scale));
   }
   .phone .screen {
     background-color: #fff;
