@@ -27,6 +27,7 @@ const Container = styled.li`
     position: relative;
     height: 80px;
     padding: 0px 20px;
+    padding-left: 60px;
     background: white;
     color: #333;
     padding-top: 10px;
@@ -42,24 +43,48 @@ const Container = styled.li`
     }
     .price {
       position: absolute;
-      right: 0;
-      top: 10px;
       display: flex;
       align-items: center;
       padding: 0px 20px;
+      top: 25px;
+      font-size: 1.5em;
+      left: 0px;
     }
   }
 `
 
 const VoteControls = styled.div`
-  margin-top: 6px;
-  padding-right: 10px;
-  float: left;
+  float: right;
   text-align: center;
   font-size: 1.2em;
-  svg {
-    display: block;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: -5px;
+  margin-left: -5px;
+  padding-right: 10px;
+`
+
+const VoteButton = styled.button`
+  border: 1px solid #ccc;
+  background: transparent;
+  padding: 5px;
+  border-radius: 100px;
+  width: 32px;
+  &:focus {
+    outline: none;
   }
+  &:active {
+    background: rgba(0, 0, 0, 0.05);
+  }
+  &:disabled {
+    opacity: 0.3;
+  }
+`
+
+const VoteSum = styled.div`
+  display: inline-block;
+  padding: 5px;
 `
 
 const enhance = compose(
@@ -90,9 +115,13 @@ const Component = ({
       <div className="img" style={{ backgroundImage: `url(${image})` }} />
       <section>
         <VoteControls>
-          <ThumbsUp size={14} onClick={upvote} />
-          {votes}
-          {votes > 0 && <ThumbsDown size={14} onClick={downvote} />}
+          <VoteButton>
+            <ThumbsUp size={18} onClick={upvote} />
+          </VoteButton>
+          <VoteSum>{votes}</VoteSum>
+          <VoteButton disabled={votes <= 0} onClick={downvote}>
+            <ThumbsDown size={18} />
+          </VoteButton>
         </VoteControls>
         <h2>{name}</h2>
         {place.name}
