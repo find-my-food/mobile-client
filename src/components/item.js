@@ -114,9 +114,13 @@ const Component = ({
     <Link to={`/${placeId}`} style={{ textDecoration: 'none' }}>
       <div className="img" style={{ backgroundImage: `url(${image})` }} />
       <section>
-        <VoteControls>
-          <VoteButton>
-            <ThumbsUp size={18} onClick={upvote} />
+        <VoteControls
+          onClick={e => {
+            e.stopPropagation()
+            e.preventDefault()
+          }}>
+          <VoteButton onClick={upvote}>
+            <ThumbsUp size={18} />
           </VoteButton>
           <VoteSum>{votes}</VoteSum>
           <VoteButton disabled={votes <= 0} onClick={downvote}>
