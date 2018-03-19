@@ -18,7 +18,8 @@ const MenuItem = Entity({ collection: 'menuItems' })
 const tacoPlaceId = Place({
   name: 'The Taco Bus',
   hours: [9, 17],
-  location: [43.818719, -111.782793]
+  location: [43.818719, -111.782793],
+  isSubscribed: false
 })
 
 const tacoItemId = MenuItem({
@@ -61,7 +62,8 @@ MenuItem({
 const burgerPlaceId = Place({
   name: 'The Burger Place',
   hours: [9, 17],
-  location: [43.819265, -111.782681]
+  location: [43.819265, -111.782681],
+  isSubscribed: false
 })
 
 const burgerItemId = MenuItem({
@@ -104,7 +106,8 @@ MenuItem({
 const soupPlaceId = Place({
   name: 'The Soup Place',
   hours: [9, 17],
-  location: [43.81702, -111.781474]
+  location: [43.81702, -111.781474],
+  isSubscribed: false
 })
 
 const soupItemId = MenuItem({
@@ -147,7 +150,8 @@ MenuItem({
 const pastaPlaceId = Place({
   name: 'The Pasta Place',
   hours: [9, 17],
-  location: [43.818559, -111.782477]
+  location: [43.818559, -111.782477],
+  isSubscribed: false
 })
 
 const pastItemId = MenuItem({

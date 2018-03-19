@@ -108,6 +108,11 @@ const OrderButton = styled.button`
   }
 `
 
+const SmallButton = OrderButton.extend`
+  font-size: 13px;
+  /* line-height: 1.5em; */
+`
+
 const MenuTable = styled.table`
   width: 100%;
   border-spacing: 0;
@@ -152,13 +157,16 @@ const enhance = compose(
     order: ({ history }) => id => () => {
       history.push('/cart')
       actions.addToCart(id)
+    },
+    subscribe: ({ place }) => () => {
+      actions.subscribe(place.id)
     }
   })
 )
 
 const formatHour = hour => (hour > 12 ? hour - 12 + ' pm' : hour + 'am')
 
-const Component = ({ place, children, order }) => (
+const Component = ({ place, children, order, subscribe }) => (
   <Container>
     <Header style={{ zIndex: 1000, background: 'rgba(0,0,0,.8)' }}>
       <Back to="/">
@@ -173,7 +181,11 @@ const Component = ({ place, children, order }) => (
         <OrderButton onClick={order(place.deal.menuItemId)}>
           Order {place.deal.name} (${place.deal.price})
         </OrderButton>
-        <br/>
+        <br />
+        <SmallButton onClick={subscribe}>
+          {place.isSubscribed ? 'Unsubscribe' : 'Subscribe'} to {place.name}
+        </SmallButton>
+        <br />
         <p>{place.deal.description}</p>
         <br />
         <strong>Hours</strong>

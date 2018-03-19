@@ -21,3 +21,14 @@ export const DOWNVOTE = (state, { id }) => ({
     }
   }
 })
+
+export const SUBSCRIBE = (state, { id }) => ({
+  ...state,
+  places: {
+    ...state.places,
+    [id]: {
+      ...state.places[id],
+      isSubscribed: !state.places[id].isSubscribed
+    }
+  }
+})
